@@ -2,31 +2,25 @@ import { useEffect, useState } from 'react';
 
 const GitHubRepositories = () => {
   const [repositories, setRepositories] = useState([]);
-  // const accessToken = 'yourAccessToken';
+  const accessToken = 'yourAcessToken'; //Add you token here. 
+  //You can generate your access token from you github account > setting (click on your profile)>Developers setting > Personal Access Token . Then generate any one of the token (classic). Make sure to store it somewhere, because the token is visible only once after that it will disappear.
 
   useEffect(() => {
-    // fetch('https://api.github.com/repositories', {headers: {Authorization: `Bearer ${accessToken}`}})
-    fetch('https://api.github.com/repositories')
+    fetch('https://api.github.com/repositories', {headers: {Authorization: `Bearer ${accessToken}`}})
       .then(response => response.json())
       .then(data => {
         // Map over the repositories and fetch additional data for each
-        const repoPromises = data.map(repo => {
+        const repoPromises = data.map(async repo => {
           // Fetch languages for each repository
-          return fetch(repo.languages_url)
-            .then(response => response.json())
-            .then(languagesData => {
-              // Fetch stargazers count for each repository
-              return fetch(repo.stargazers_url)
-                .then(response => response.json())
-                .then(stargazersData => {
-                  // Combine the fetched data with the repository object
-                  return {
-                    ...repo,
-                    languages: Object.keys(languagesData).join(', '),
-                    stargazers_count: stargazersData.length
-                  };
-                });
-            });
+          const response = await fetch(repo.languages_url,  {headers: {Authorization: `Bearer ${accessToken}`}});
+          const languagesData = await response.json();
+          const response_1 = await fetch(repo.stargazers_url,  {headers: {Authorization: `Bearer ${accessToken}`}});
+          const stargazersData = await response_1.json();
+          return {
+            ...repo,
+            languages: Object.keys(languagesData).join(', '),
+            stargazers_count: stargazersData.length
+          };
         });
 
         // Wait for all promises to resolve
@@ -39,17 +33,17 @@ const GitHubRepositories = () => {
   return (
     <div>
       <h1 className="text-2xl font-bold mb-4">Public GitHub Repositories</h1>
-      <ul>
+      <div className='flex justify-around flex-wrap'>
         {repositories.map((repo) => (
-          <li key={repo.id} className="mb-4">
+          <div key={repo.id} className="mb-4 bg-purple-200">
             <a href={repo.html_url} target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">
               {repo.name}
             </a>
             <p className="text-gray-600">Language: {repo.languages}</p>
             <p className="text-gray-600">Stars: {repo.stargazers_count}</p>
-          </li>
+          </div>
         ))}
-      </ul>
+      </div>
     </div>
   );
 };

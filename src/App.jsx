@@ -1,15 +1,23 @@
-import './App.css'
-import GitHubRepositories from './components/GitHubRepositories'
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import "./App.css";
+import GitHubRepositories from "./components/GitHubRepositories";
+import Landing from "./components/Landing";
+import Navbar from './components/Navbar'
+import Footer from './components/Footer'
 
 function App() {
-
   return (
-    <div>
-        <h1 className='text-center text-4xl font-bold text-indigo-600'>RepoHunt</h1>
-        <p className='text center text-gray-400'>Under Development</p>
-        <GitHubRepositories />
-    </div>
-  )
+    <main>
+    <Navbar/>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Landing />} />
+          <Route path="/repos" element={<GitHubRepositories />} />
+        </Routes>
+      </BrowserRouter>
+      <Footer/>
+    </main>
+  );
 }
 
-export default App
+export default App;
