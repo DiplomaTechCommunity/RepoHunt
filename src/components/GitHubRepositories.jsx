@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
+const GitHubRepositories = ({ searchQuery }) => {
 
-const GitHubRepositories = () => {
+  // Storing repositories fetched from Github API
   const [repositories, setRepositories] = useState([]);
-  const accessToken = 'yourAcessToken'; //Add you token here. 
-  //You can generate your access token from you github account > setting (click on your profile)>Developers setting > Personal Access Token . Then generate any one of the token (classic). Make sure to store it somewhere, because the token is visible only once after that it will disappear.
+  const accessToken = 'your token from github acc'; //Add you token here. 
+  //You can generate your access token from you github account > setting (click on your profile)>Developers setting > Personal Access Token . Then generate any one of the token (classic). Make sure to store it somewhere, because the token is visible only once after that it will disappear. If you forget (Then Regenerate it)
 
   useEffect(() => {
     fetch('https://api.github.com/repositories', {headers: {Authorization: `Bearer ${accessToken}`}})
@@ -30,6 +32,17 @@ const GitHubRepositories = () => {
       .catch(error => console.log(error));
   }, []);
 
+
+  // Search
+  useEffect(() => {
+    // Filter repositories based on the search query
+    const filteredRepositories = repositories.filter((repo) =>
+      repo.name.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+    // Update the state with filtered repositories
+    setRepositories(filteredRepositories);
+  }, [searchQuery]); // Re-run this effect whenever the search query changes
+
   return (
     <div>
       <h1 className="text-2xl font-bold mb-4">Public GitHub Repositories</h1>
@@ -46,6 +59,11 @@ const GitHubRepositories = () => {
       </div>
     </div>
   );
+};
+
+// PropTypes for better code validation
+GitHubRepositories.propTypes = {
+  searchQuery: PropTypes.string.isRequired,
 };
 
 export default GitHubRepositories;
