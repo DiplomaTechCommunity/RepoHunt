@@ -1,18 +1,16 @@
-
-
-.description-text{
+.description-text {
   color: antiquewhite;
   margin-left: 50px;
   text-align: justify;
-  width: 750px ;
+  width: 750px;
   font-family: Arial;
   margin-top: 10px;
   font-size: large;
 }
 
-.landing-container{
+.landing-container {
   height: 100%;
-  width: 100%;
+  width: 100vw;
   margin: 0;
   padding: 0;
 }
@@ -36,4 +34,103 @@
   font-family: 'Franklin Gothic Medium';
 }
 
+/* Benefits section */
 
+#Benefits .section-header {
+  height: 56.40px;
+  background: linear-gradient(90deg, rgba(255, 140, 230, 1) 20%, rgba(255, 178, 238, 1) 36%, rgba(146, 203, 255, 1) 76%, rgba(121, 190, 253, 1) 100%);
+  background-clip: text;
+  color: transparent;
+  font-size: 45px;
+  font-family: sans-serif;
+  font-weight: 600;
+  text-transform: capitalize;
+  word-wrap: break-word;
+  margin-bottom: 3vw;
+}
+
+.benefits-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  padding-left: 1.5cm;
+}
+
+.cards {
+  display: flex;
+  justify-content: space-around;
+  width: auto;
+}
+
+.card-img {
+  padding-left: 45px;
+}
+
+.cards img {
+  height: 8vw;
+  width: 8vw;
+}
+
+.card-body {
+  border-radius: 30px;
+  width: 15vw;
+  padding: 10px;
+  margin-right: 50px;
+  background-color: white;
+}
+
+.cards .card-text {
+  height: 40px;
+  text-align: center;
+  color: #0A1D64;
+  font-size: 22px;
+  line-height: 31.67px;
+  margin-bottom: 20px;
+}
+
+/* Repohunt additional DTC information */
+
+#Additional-info .section-header {
+  height: 56.40px;
+  background: linear-gradient(90deg, rgba(255, 140, 230, 1) 20%, rgba(255, 178, 238, 1) 36%, rgba(146, 203, 255, 1) 76%, rgba(121, 190, 253, 1) 100%);
+  background-clip: text;
+  color: transparent;
+  font-size: 45px;
+  font-family: sans-serif;
+  font-weight: 600;
+  text-transform: capitalize;
+  word-wrap: break-word;
+  margin-bottom: 3vw;
+}
+
+.additional-section {
+  text-align: center;
+  padding-top: 3cm;
+  padding-bottom: 3cm;
+}
+
+.additional-section .information {
+  font-size: 1.3rem;
+  color: white;
+  width: 75vw;
+  text-align: center;
+  margin-left: 5cm;
+}
+
+@media screen and (max-width: 768px) {
+  .cards {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .card-body {
+    width: 6cm;
+    height: 7cm;
+  }
+
+  .card-img {
+    width: 20vw;
+    height: 5cm;
+  }
+}
