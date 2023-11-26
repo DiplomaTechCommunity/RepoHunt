@@ -13,10 +13,10 @@ const Search = ({ onSearch }) => {
         onSearch(searchQuery);
     };
   return (
-    <div className="bodyBG">
+    <div>
       <div className="text-box">
         <p className="text linear-gradient">Search the Repositories </p>
-        <p className="text"> here</p>
+        <p className="text"> here!</p>
       </div>
     
         <div className="search-bar">

@@ -1,0 +1,39 @@
+
+
+.description-text{
+  color: antiquewhite;
+  margin-left: 50px;
+  text-align: justify;
+  width: 750px ;
+  font-family: Arial;
+  margin-top: 10px;
+  font-size: large;
+}
+
+.landing-container{
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+
+.adjacent-image {
+  width: 40%;
+  max-height: 150%;
+  margin-top: -20%;
+  margin-left: 60%;
+}
+
+.title {
+  background: linear-gradient(80deg, #FF8CE6, #F09AEA, #E1A9EF, #79BEFD, #92CBFF);
+  -webkit-background-clip: text;
+  color: transparent;
+  display: inline-block;
+  margin-top: 6% !important;
+  margin-left: -1100px !important;
+  font-size: xx-large;
+  font-family: 'Franklin Gothic Medium';
+}
+
+

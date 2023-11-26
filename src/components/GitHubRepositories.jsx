@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
+import Search from './Search';
 const GitHubRepositories = ({ searchQuery }) => {
 
   // Storing repositories fetched from Github API
@@ -44,8 +45,9 @@ const GitHubRepositories = ({ searchQuery }) => {
   }, [searchQuery]); // Re-run this effect whenever the search query changes
 
   return (
+    <div className='bg-[#0B0E1A]'>
+       <Search/>
     <div>
-      <h1 className="text-2xl font-bold mb-4">Public GitHub Repositories</h1>
       <div className='flex justify-around flex-wrap'>
         {repositories.map((repo) => (
           <div key={repo.id} className="mb-4 bg-purple-200">
@@ -58,6 +60,8 @@ const GitHubRepositories = ({ searchQuery }) => {
         ))}
       </div>
     </div>
+    </div>
+  
   );
 };
 
