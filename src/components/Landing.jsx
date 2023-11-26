@@ -1,4 +1,3 @@
-import React from 'react';
 import './Landing.css';
 
 const backgroundImage = 'C:/Users/aliza/OneDrive/Documents/TOOLS.png';
