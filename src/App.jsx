@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import {Route, Routes } from "react-router-dom";
 import "./App.css";
 import GitHubRepositories from "./components/GitHubRepositories";
 import Landing from "./components/Landing";
@@ -9,12 +9,10 @@ function App() {
   return (
     <main>
     <Navbar/>
-      <BrowserRouter>
         <Routes>
           <Route path="/" element={<Landing />} />
           <Route path="/repos" element={<GitHubRepositories />} />
         </Routes>
-      </BrowserRouter>
       <Footer/>
     </main>
   );
