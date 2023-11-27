@@ -1,6 +1,6 @@
 import './Landing.css';
 
-const backgroundImage = 'C:/Users/aliza/OneDrive/Documents/TOOLS.png';
+const backgroundImage = "../images/homepage-bg.jpg";
 const adjacentImageUrl = 'https://pbs.twimg.com/media/FkEabVcWIAEhLQf?format=jpg&name=900x900';
 
 const styles = {
@@ -10,7 +10,8 @@ const styles = {
     backgroundSize: 'cover',
     backgroundRepeat: 'no-repeat',
     width: '100vw',
-    height: '100vh'
+    height: '100vh',
+    padding: 0
   }
 };
 

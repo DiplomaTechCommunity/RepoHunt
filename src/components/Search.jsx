@@ -4,9 +4,9 @@ import PropTypes from 'prop-types';
 
 const Search = ({ onSearch }) => {
     // State to store the search query
-    const [searchQuery, setSeachQuery] = useState('');
+    const [searchQuery, setSearchQuery] = useState('');
 
-    // Functiont to Handle Search Event
+    // Function to Handle Search Event
     const handleSearch = (e) =>{
         e.preventDefault();
 
@@ -22,7 +22,7 @@ const Search = ({ onSearch }) => {
         <div className="search-bar">
           <form onSubmit={handleSearch}>
           <input id="search-id" type="text" placeholder="Search..." value={searchQuery}
-          onChange={(e)=> setSeachQuery(e.target.value)}
+          onChange={(e)=> setSearchQuery(e.target.value)}
           />
         <button className="searchButton">Search</button>
           </form>
