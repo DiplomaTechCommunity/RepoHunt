@@ -1,22 +1,23 @@
-
-
-.description-text{
-  color: antiquewhite;
+/* Default styles */
+.description-text {
+  color: white;
   margin-left: 50px;
   text-align: justify;
-  width: 750px ;
-  font-family: Arial;
+  width: 750px;
+  font-family: sans-serif;
   margin-top: 10px;
-  font-size: large;
+  font-size: 1.4rem;
 }
 
-.landing-container{
-  height: 100%;
-  width: 100%;
+body {
   margin: 0;
   padding: 0;
+  background-image: url('/images/landing bg.png');
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+  Height:100vh;
 }
-
 
 .adjacent-image {
   width: 40%;
@@ -25,15 +26,37 @@
   margin-left: 60%;
 }
 
+
+/* Media queries */
+@media (max-width: 768px) {
+  .description-text {
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .background-image {
+    height: 80vh;
+  }
+
+  .adjacent-image {
+    width: 100%;
+    margin-top: 0;
+    margin-left: 0;
+  }
+
+  .title {
+    margin-left: 0 !important;
+  }
+}
+
 .title {
   background: linear-gradient(80deg, #FF8CE6, #F09AEA, #E1A9EF, #79BEFD, #92CBFF);
   -webkit-background-clip: text;
   color: transparent;
   display: inline-block;
   margin-top: 6% !important;
-  margin-left: -1100px !important;
-  font-size: xx-large;
+  margin-left: -970px !important;
+  font-size: 3rem;
   font-family: 'Franklin Gothic Medium';
 }
-
 
