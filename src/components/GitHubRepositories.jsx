@@ -9,15 +9,15 @@ const GitHubRepositories = ({ searchQuery }) => {
   //You can generate your access token from you github account > setting (click on your profile)>Developers setting > Personal Access Token . Then generate any one of the token (classic). Make sure to store it somewhere, because the token is visible only once after that it will disappear. If you forget (Then Regenerate it)
 
   useEffect(() => {
-    fetch('https://api.github.com/repositories', {headers: {Authorization: `Bearer ${accessToken}`}})
+    fetch('https://api.github.com/repositories', { headers: { Authorization: `Bearer ${accessToken}` } })
       .then(response => response.json())
       .then(data => {
         // Map over the repositories and fetch additional data for each
         const repoPromises = data.map(async repo => {
           // Fetch languages for each repository
-          const response = await fetch(repo.languages_url,  {headers: {Authorization: `Bearer ${accessToken}`}});
+          const response = await fetch(repo.languages_url, { headers: { Authorization: `Bearer ${accessToken}` } });
           const languagesData = await response.json();
-          const response_1 = await fetch(repo.stargazers_url,  {headers: {Authorization: `Bearer ${accessToken}`}});
+          const response_1 = await fetch(repo.stargazers_url, { headers: { Authorization: `Bearer ${accessToken}` } });
           const stargazersData = await response_1.json();
           return {
             ...repo,
@@ -46,22 +46,22 @@ const GitHubRepositories = ({ searchQuery }) => {
 
   return (
     <div className='bg-[#0B0E1A]'>
-       <Search/>
-    <div>
-      <div className='flex justify-around flex-wrap'>
-        {repositories.map((repo) => (
-          <div key={repo.id} className="mb-4 bg-purple-200">
-            <a href={repo.html_url} target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">
-              {repo.name}
-            </a>
-            <p className="text-gray-600">Language: {repo.languages}</p>
-            <p className="text-gray-600">Stars: {repo.stargazers_count}</p>
-          </div>
-        ))}
+      <Search />
+      <div>
+        <div className='flex justify-around flex-wrap'>
+          {repositories.map((repo) => (
+            <div key={repo.id} className="mb-4 bg-purple-200">
+              <a href={repo.html_url} target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">
+                {repo.name}
+              </a>
+              <p className="text-gray-600">Language: {repo.languages}</p>
+              <p className="text-gray-600">Stars: {repo.stargazers_count}</p>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
-    </div>
-  
+
   );
 };
 

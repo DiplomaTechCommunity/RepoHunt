@@ -31,6 +31,10 @@ const Search = ({ onSearch }) => {
   );
 };
 
+Search.defaultProps = {
+  searchQuery: '',
+};
+
 Search.propTypes = {
     onSearch: PropTypes.func.isRequired,
 };
