@@ -6,6 +6,7 @@ import Footer from './components/Footer'
 import { useState } from "react";
 import GitHubRepositories from "./components/GitHubRepositories";
 import Search from "./components/Search";
+import GhTemp from "./components/GhTemp";
 
 function App() {
   const [searchQuery, setSearchQuery] = useState('');
@@ -26,7 +27,8 @@ function App() {
         <Routes>
           <Route path="/" element={<Landing />} />
           <Route path="/search" element={<Search onSearch={handleSearch} />}/>
-          <Route path="/repos" element={<GitHubRepositories searchQuery={searchQuery} />} />
+          {/* <Route path="/repos" element={<GitHubRepositories searchQuery={searchQuery} />} /> */}
+          <Route path="/repos" element={<GhTemp searchQuery={searchQuery} />} />
         </Routes>
       <Footer/>
     </main>
