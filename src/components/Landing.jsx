@@ -1,11 +1,10 @@
-import './Landing.css'; 
+import './Landing.css';
+import Footer from "../components/Footer" 
 
 
 const Landing = () => {
   return (
     <div className="landing-container">
-     
-
       <div className="content">
         <div className="description-container">
           <div className="description-text">
@@ -69,6 +68,7 @@ const Landing = () => {
         <p>Diploma Tech Community is a thriving hub for coding enthusiasts among diploma students. DTC is committed to encourage learning and collaboration in the dynamic field of computer science. Our community organizes an array of events, including sessions, workshops, open source programs, hackathons, and more.</p>
       </div>
     </div>
+    <Footer/>
     </div>
   );
 };

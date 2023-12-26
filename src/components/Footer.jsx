@@ -6,7 +6,7 @@ import web from "../images/web.png"
 
 const Footer = () => {
   return (
-    <footer className="bg-black p-2 text-white">
+    <footer className="p-2 text-white">
        <ul className="flex flex-wrap justify-around">
         <li className="flex">
           <img src={web} alt="" />
