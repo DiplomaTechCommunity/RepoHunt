@@ -2,7 +2,7 @@ import './Landing.css';
 import Footer from "../components/Footer" 
 import adjacentImg from "../images/adjacent img.png"
 import exploration from "../images/exploration.png"
-import preferenceBased from "../images/preferencebased.png"
+import preferenceBased from "../images/preferenceBased.png"
 import prioritizedResults from "../images/prioritizedResults.png"
 import searchOptimization from "../images/searchOptimization.png"
 import timeEfficiency from "../images/timeEfficiency.png"
