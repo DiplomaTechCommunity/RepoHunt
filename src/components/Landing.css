@@ -1,4 +1,10 @@
 /* Default styles */
+
+.description-container{
+  display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .description-text {
   color: white;
   margin-left: 50px;
@@ -16,16 +22,25 @@ body {
   background-size: cover;
   background-attachment: fixed;
   background-position: center;
-  Height:100vh;
+  min-height:100vh;
 }
 
 .adjacent-image {
   width: 40%;
   max-height: 150%;
-  margin-top: -20%;
-  margin-left: 60%;
 }
 
+/* Landing Section */
+
+.section-header {
+  height: 56.40px;
+  background: linear-gradient(90deg, rgba(255, 140, 230, 1) 20%, rgba(255, 178, 238, 1) 36%, rgba(146, 203, 255, 1) 76%, rgba(121, 190, 253, 1) 100%);
+  background-clip: text;
+  color: transparent;
+  font-size: 38px;
+  font-family: sans-serif;
+  font-weight: 600;
+}
 
 /* Media queries */
 @media (max-width: 768px) {

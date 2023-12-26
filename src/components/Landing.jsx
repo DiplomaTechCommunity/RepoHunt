@@ -1,4 +1,3 @@
-import React from 'react';
 import './Landing.css'; 
 
 
@@ -6,12 +5,11 @@ const Landing = () => {
   return (
     <div className="landing-container">
      
-      <img src="/images/landing bg.png" className="background-image" />
 
       <div className="content">
-        <h1>Welcome to RepoHunt</h1>
         <div className="description-container">
           <div className="description-text">
+        <h1 className='section-header'>Welcome to RepoHunt</h1>
             <p>
               RepoHunt is an efficient GitHub repository search platform. Simplify your exploration of GitHub repositories with precision and ease through customized search functionalities. Whether you seek projects in specific programming languages, prefer repositories with a particular star rating, or prioritize labeled repositories. RepoHunt empowers you to explore the vast GitHub landscape with efficiency. Explore, evaluate, and elevate your GitHub experience with our streamlined repository search.
             </p>

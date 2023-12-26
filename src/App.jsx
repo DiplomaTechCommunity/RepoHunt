@@ -4,7 +4,6 @@ import Landing from "./components/Landing";
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import { useState } from "react";
-import GitHubRepositories from "./components/GitHubRepositories";
 import Search from "./components/Search";
 import GhTemp from "./components/GhTemp";
 
@@ -16,12 +15,6 @@ function App() {
   };
 
   return (
-
-    // Comment main tag just to test Search Functionality
-    // <>
-    // <Search onSearch={handleSearch} />
-    // <GitHubRepositories searchQuery={searchQuery} />
-    // </>
     <main>
     <Navbar/>
         <Routes>
