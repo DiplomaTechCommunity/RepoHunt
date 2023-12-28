@@ -132,7 +132,6 @@ const GitHubRepositories = () => {
   {
     Array.from(allLanguages).map((lang, index)=>{
       if(lang !== "") {
-        console.log(lang)
       return <option key={index} value={lang}>{lang}</option>
       }
     })
@@ -162,7 +161,7 @@ const GitHubRepositories = () => {
       </div>
 
       <div>
-        <div className='grid grid-cols-4 justify-around p-4'>
+        <div className='grid grid-cols-4 justify-around p-4 items-stretch'>
           {filterRepo.map((repo, index) => (
             <Cards repo={repo} key={index}/>
           ))}
