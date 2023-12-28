@@ -18,7 +18,8 @@ const Cards = ({repo}) => {
         <img src={repo.owner.avatar_url} alt=""  className="mr-2 w-[30px] h-[30px] rounded-[100%]"/>
         <span> {repo.owner.login}</span>
        </div>
-     {repo.labels.length> 0 && <div  className="flex justify-between my-2">
+       <h3 className=" text-md font-medium text-start py-1">{repo.name}</h3>
+     {repo.labels.length> 0 && <div  className="flex justify-around my-2">
         <span className="bg-red-400 p-1 m-1 rounded-lg">{repo.labels[0]}</span>
        {repo.labels.length> 1 &&<span className="bg-yellow-400 p-1 m-1 rounded-lg">{repo.labels[1]}</span>}
        {repo.labels.length>2 && <span className="bg-red-400 p-1 m-1 rounded-lg">Others</span>}
