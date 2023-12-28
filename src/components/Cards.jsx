@@ -11,20 +11,15 @@ const Cards = ({repo}) => {
     <div className="text-white m-2">
        <div className="flex justify-between bg-[#A06BE3] p-4 rounded-t-md">
         <h3>{repo.name}</h3>
-        <p><FontAwesomeIcon  icon={faInfoCircle} /> {repo.issues} issues</p>
+        <p><FontAwesomeIcon  icon={faInfoCircle} /> {repo.open_issues_count} issues</p>
        </div>
        <div className="bg-[#24262E] p-4 rounded-b-md">
        <div  className="flex my-2">
         <img src={repo.owner.avatar_url} alt=""  className="mr-2 w-[30px] h-[30px] rounded-[100%]"/>
         <span> {repo.owner.login}</span>
        </div>
-       <div  className="flex justify-between my-2">
        <span>Languages: </span>
-        <span className="bg-yellow-400 p-1 m-1 rounded-lg">{repo.languages[0]}</span>
-        {repo.languages.length>1 &&<span className="bg-green-400 p-1 m-1 rounded-lg"> 
-       { repo.languages[1]}</span>}
-        {repo.languages.length>2 && <span className="bg-red-400 p-1 m-1 rounded-lg">Others</span>}
-       </div>
+        <span className="bg-yellow-400 p-1 m-1 rounded-lg">{repo.language}</span>
      {repo.labels.length> 0 && <div  className="flex justify-between my-2">
         <span className="bg-red-400 p-1 m-1 rounded-lg">{repo.labels[0]}</span>
        {repo.labels.length> 1 &&<span className="bg-yellow-400 p-1 m-1 rounded-lg">{repo.labels[1]}</span>}
