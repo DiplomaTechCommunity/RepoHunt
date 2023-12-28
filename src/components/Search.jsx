@@ -24,7 +24,6 @@ const Search = ({ onSearch }) => {
           <input id="search-id" type="text" placeholder="Search..." value={searchQuery}
           onChange={(e)=> setSearchQuery(e.target.value)}
           />
-        <button className="searchButton">Search</button>
           </form>
         </div>
       </div>
