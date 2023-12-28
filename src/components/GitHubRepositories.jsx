@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import Search from './Search';
+import Footer from "../components/Footer"
+
 const GitHubRepositories = ({ searchQuery }) => {
 
   // Storing repositories fetched from Github API
@@ -9,15 +11,15 @@ const GitHubRepositories = ({ searchQuery }) => {
   //You can generate your access token from you github account > setting (click on your profile)>Developers setting > Personal Access Token . Then generate any one of the token (classic). Make sure to store it somewhere, because the token is visible only once after that it will disappear. If you forget (Then Regenerate it)
 
   useEffect(() => {
-    fetch('https://api.github.com/repositories', {headers: {Authorization: `Bearer ${accessToken}`}})
+    fetch('https://api.github.com/repositories', { headers: { Authorization: `Bearer ${accessToken}` } })
       .then(response => response.json())
       .then(data => {
         // Map over the repositories and fetch additional data for each
         const repoPromises = data.map(async repo => {
           // Fetch languages for each repository
-          const response = await fetch(repo.languages_url,  {headers: {Authorization: `Bearer ${accessToken}`}});
+          const response = await fetch(repo.languages_url, { headers: { Authorization: `Bearer ${accessToken}` } });
           const languagesData = await response.json();
-          const response_1 = await fetch(repo.stargazers_url,  {headers: {Authorization: `Bearer ${accessToken}`}});
+          const response_1 = await fetch(repo.stargazers_url, { headers: { Authorization: `Bearer ${accessToken}` } });
           const stargazersData = await response_1.json();
           return {
             ...repo,
@@ -45,23 +47,52 @@ const GitHubRepositories = ({ searchQuery }) => {
   }, [searchQuery]); // Re-run this effect whenever the search query changes
 
   return (
-    <div className='bg-[#0B0E1A]'>
-       <Search/>
-    <div>
-      <div className='flex justify-around flex-wrap'>
-        {repositories.map((repo) => (
-          <div key={repo.id} className="mb-4 bg-purple-200">
-            <a href={repo.html_url} target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">
-              {repo.name}
-            </a>
-            <p className="text-gray-600">Language: {repo.languages}</p>
-            <p className="text-gray-600">Stars: {repo.stargazers_count}</p>
-          </div>
-        ))}
+   <div className='bg-[#0B0E1A] '>
+    <div className='min-h-screen'>
+      <Search />
+       <div className='text-center m-12 text-white text-3xl'>Filter your search using Languages, Labels and Stars</div>
+
+<div className='flex m-12 justify-around'>
+<select id="countries" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 pr-16">
+  <option selected>Language</option>
+  <option value="US">United States</option>
+  <option value="CA">Canada</option>
+  <option value="FR">France</option>
+  <option value="DE">Germany</option>
+</select>
+
+<select id="countries" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 pr-16">
+  <option selected>Labels</option>
+  <option value="US">United States</option>
+  <option value="CA">Canada</option>
+  <option value="FR">France</option>
+  <option value="DE">Germany</option>
+</select>
+<select id="countries" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 pr-16">
+  <option selected>Stars</option>
+  <option value="US">United States</option>
+  <option value="CA">Canada</option>
+  <option value="FR">France</option>
+  <option value="DE">Germany</option>
+</select>
+      </div>
+
+      <div>
+        <div className='flex justify-around flex-wrap'>
+          {repositories.map((repo) => (
+            <div key={repo.id} className="mb-4 bg-purple-200">
+              <a href={repo.html_url} target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">
+                {repo.name}
+              </a>
+              <p className="text-gray-600">Language: {repo.languages}</p>
+              <p className="text-gray-600">Stars: {repo.stargazers_count}</p>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
-    </div>
-  
+      <Footer/>
+ </div>
   );
 };
 

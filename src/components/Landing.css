@@ -1,28 +1,67 @@
+/* Default styles */
 
-
-.description-text{
-  color: antiquewhite;
+.description-container{
+  display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.description-text {
+  color: white;
   margin-left: 50px;
   text-align: justify;
-  width: 750px ;
-  font-family: Arial;
+  width: 750px;
+  font-family: sans-serif;
   margin-top: 10px;
-  font-size: large;
+  font-size: 1.4rem;
 }
 
-.landing-container{
-  height: 100%;
-  width: 100%;
+.landing-container {
   margin: 0;
   padding: 0;
+  background-image: url('../images/landing bg.png');
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+  min-height:100vh;
 }
-
 
 .adjacent-image {
   width: 40%;
   max-height: 150%;
-  margin-top: -20%;
-  margin-left: 60%;
+}
+
+/* Landing Section */
+
+.section-header {
+  height: 56.40px;
+  background: linear-gradient(90deg, rgba(255, 140, 230, 1) 20%, rgba(255, 178, 238, 1) 36%, rgba(146, 203, 255, 1) 76%, rgba(121, 190, 253, 1) 100%);
+  background-clip: text;
+  color: transparent;
+  font-size: 38px;
+  font-family: sans-serif;
+  font-weight: 600;
+}
+
+/* Media queries */
+@media (max-width: 768px) {
+  .description-text {
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .background-image {
+    height: 80vh;
+  }
+
+  .adjacent-image {
+    width: 100%;
+    margin-top: 0;
+    margin-left: 0;
+  }
+
+  .title {
+    margin-left: 0 !important;
+  }
 }
 
 .title {
@@ -31,9 +70,8 @@
   color: transparent;
   display: inline-block;
   margin-top: 6% !important;
-  margin-left: -1100px !important;
-  font-size: xx-large;
+  margin-left: -970px !important;
+  font-size: 3rem;
   font-family: 'Franklin Gothic Medium';
 }
-
 
