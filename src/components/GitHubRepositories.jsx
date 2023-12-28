@@ -10,9 +10,9 @@ const GitHubRepositories = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const allLanguages = useMemo(()=>new Set(), []);
   // eslint-disable-next-line no-undef
-  const accessToken = process.env.VITE_TOKEN // For local Add an .env file. 
+  const accessToken = process.env.NEXT_PUBLIC_TOKEN;  
+  // const accessToken = process.env.VITE_TOKEN // For local Add an .env file. 
 
-// const accessToken = process.env.NEXT_PUBLIC_TOKEN;  
 
   useEffect(() => {
     fetch('https://api.github.com/repositories', { headers: { Authorization: `Bearer ${accessToken}` } })
