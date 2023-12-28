@@ -1,16 +1,13 @@
-import { useState } from "react";
 import "../Search.css";
 import PropTypes from 'prop-types';
 
-const Search = ({ onSearch }) => {
+const Search = ({  onSearch,searchQuery, setSearchQuery }) => {
     // State to store the search query
-    const [searchQuery, setSearchQuery] = useState('');
 
     // Function to Handle Search Event
     const handleSearch = (e) =>{
-        e.preventDefault();
-
-        onSearch(searchQuery);
+        setSearchQuery(e.target.value)
+        onSearch(e.target.value);
     };
   return (
     <div>
@@ -20,12 +17,10 @@ const Search = ({ onSearch }) => {
       </div>
     
         <div className="search-bar">
-          <form onSubmit={handleSearch}>
-          <input id="search-id" type="text" placeholder="Search..." value={searchQuery}
-          onChange={(e)=> setSearchQuery(e.target.value)}
+          <input id="search-id" type="text" placeholder="Search..." 
+          onChange={(e)=> handleSearch(e)} value={searchQuery}
           />
         <button className="searchButton">Search</button>
-          </form>
         </div>
       </div>
   );
@@ -33,9 +28,13 @@ const Search = ({ onSearch }) => {
 
 Search.defaultProps = {
   searchQuery: '',
+  setSearchQuery: ()=>{},
+  onSearch: ()=>{}
 };
 
 Search.propTypes = {
     onSearch: PropTypes.func.isRequired,
+    setSearchQuery: PropTypes.func.isRequired,
+    searchQuery: PropTypes.string.isRequired,
 };
 export default Search;

@@ -1,14 +1,19 @@
-import { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
+import { useEffect, useState, useMemo } from 'react';
 import Search from './Search';
 import Footer from "../components/Footer"
+import Cards from './Cards';
 
-const GitHubRepositories = ({ searchQuery }) => {
+const GitHubRepositories = () => {
 
   // Storing repositories fetched from Github API
   const [repositories, setRepositories] = useState([]);
-  const accessToken = 'your token from github acc'; //Add you token here. 
-  //You can generate your access token from you github account > setting (click on your profile)>Developers setting > Personal Access Token . Then generate any one of the token (classic). Make sure to store it somewhere, because the token is visible only once after that it will disappear. If you forget (Then Regenerate it)
+  const [filterRepo, setfilterRepo] = useState([]);
+  const [searchQuery, setSearchQuery] = useState('');
+  const allLanguages = useMemo(()=>new Set(), []);
+
+  // const accessToken = ""; // For local Add an .env file. 
+  // eslint-disable-next-line no-undef
+  const accessToken = process.env.NEXT_PUBLIC_TOKEN;  
 
   useEffect(() => {
     fetch('https://api.github.com/repositories', { headers: { Authorization: `Bearer ${accessToken}` } })
@@ -19,74 +24,93 @@ const GitHubRepositories = ({ searchQuery }) => {
           // Fetch languages for each repository
           const response = await fetch(repo.languages_url, { headers: { Authorization: `Bearer ${accessToken}` } });
           const languagesData = await response.json();
+          const languages = Object.keys(languagesData).join(', ').split(",");
+          languages.forEach((lang)=>{
+          allLanguages.add(lang)
+            
+          })
           const response_1 = await fetch(repo.stargazers_url, { headers: { Authorization: `Bearer ${accessToken}` } });
           const stargazersData = await response_1.json();
+          const response_2 = await fetch(`https://api.github.com/repos/${repo.owner.login}/${repo.name}/labels`, { headers: { Authorization: `Bearer ${accessToken}` } });
+          let labels = await response_2.json();
+          const labelArray = []
+          labels.filter((lab)=>{
+            labelArray.push(lab.name)
+          })
+          const response_3 = await fetch(`https://api.github.com/repos/${repo.owner.login}/${repo.name}`, { headers: { Authorization: `Bearer ${accessToken}` } });
+          let issuenumber = await response_3.json();
+          issuenumber = issuenumber.open_issues_count
+          
           return {
             ...repo,
-            languages: Object.keys(languagesData).join(', '),
-            stargazers_count: stargazersData.length
+            languages: languages,
+            stargazers_count: stargazersData.length,
+            labels: labelArray,
+            issues: issuenumber
           };
         });
 
         // Wait for all promises to resolve
         return Promise.all(repoPromises);
       })
-      .then(updatedRepositories => setRepositories(updatedRepositories))
+      .then(updatedRepositories => {
+        setRepositories(updatedRepositories)
+        setfilterRepo(updatedRepositories)
+      })
       .catch(error => console.log(error));
-  }, []);
+  }, [setRepositories, allLanguages, accessToken]);
+
 
 
   // Search
-  useEffect(() => {
+  const search = (val) => {
     // Filter repositories based on the search query
     const filteredRepositories = repositories.filter((repo) =>
-      repo.name.toLowerCase().includes(searchQuery.toLowerCase())
+      repo.name.toLowerCase().includes(val.toLowerCase())
     );
     // Update the state with filtered repositories
-    setRepositories(filteredRepositories);
-  }, [searchQuery]); // Re-run this effect whenever the search query changes
-
+    if(val === '') setfilterRepo(repositories)
+    setfilterRepo(filteredRepositories);
+  }; // Re-run this effect whenever the search query changes
   return (
    <div className='bg-[#0B0E1A] '>
     <div className='min-h-screen'>
-      <Search />
+      <Search onSearch={search} searchQuery={searchQuery} setSearchQuery={setSearchQuery}/>
        <div className='text-center m-12 text-white text-3xl'>Filter your search using Languages, Labels and Stars</div>
 
 <div className='flex m-12 justify-around'>
 <select id="countries" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 pr-16">
-  <option selected>Language</option>
-  <option value="US">United States</option>
-  <option value="CA">Canada</option>
-  <option value="FR">France</option>
-  <option value="DE">Germany</option>
+  <option defaultValue={"Language"}>Language</option>
+  {
+    Array.from(allLanguages).map((lang, index)=>{
+      return <option key={index} value={lang}>{lang}</option>
+    })
+  }
 </select>
 
 <select id="countries" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 pr-16">
-  <option selected>Labels</option>
-  <option value="US">United States</option>
-  <option value="CA">Canada</option>
-  <option value="FR">France</option>
-  <option value="DE">Germany</option>
+  <option defaultChecked={"Labels"}>Labels</option>
+  <option value="Bug">Bug</option>
+  <option value="Feature">Feature</option>
+  <option value="Enhancement">Enhancement</option>
+  <option value="Documentation">Documentation</option>
+  <option value="Good First Issue">Good First Issue</option>
+  <option value="Help Wanted">Help Wanted</option>
+  <option value="Critical">Critical</option>
 </select>
 <select id="countries" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 pr-16">
-  <option selected>Stars</option>
-  <option value="US">United States</option>
-  <option value="CA">Canada</option>
-  <option value="FR">France</option>
-  <option value="DE">Germany</option>
+  <option defaultChecked="Stars">Stars</option>
+  <option value="50">{'>50'}</option>
+  <option value="100">{'>100'}</option>
+  <option value="150">{'>150'}</option>
+  <option value="200">{'>200'}</option>
 </select>
       </div>
 
       <div>
-        <div className='flex justify-around flex-wrap'>
-          {repositories.map((repo) => (
-            <div key={repo.id} className="mb-4 bg-purple-200">
-              <a href={repo.html_url} target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">
-                {repo.name}
-              </a>
-              <p className="text-gray-600">Language: {repo.languages}</p>
-              <p className="text-gray-600">Stars: {repo.stargazers_count}</p>
-            </div>
+        <div className='grid grid-cols-4 justify-around p-4'>
+          {filterRepo.map((repo, index) => (
+            <Cards repo={repo} key={index}/>
           ))}
         </div>
       </div>
@@ -96,10 +120,6 @@ const GitHubRepositories = ({ searchQuery }) => {
   );
 };
 
-// PropTypes for better code validation
-GitHubRepositories.propTypes = {
-  searchQuery: PropTypes.string.isRequired,
-};
 
 export default GitHubRepositories;
 
