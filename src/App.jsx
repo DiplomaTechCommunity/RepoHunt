@@ -5,7 +5,6 @@ import Navbar from './components/Navbar'
 import GitHubRepositories from "./components/GitHubRepositories";
 
 function App() {
-
   return (
     <main>
     <Navbar/>

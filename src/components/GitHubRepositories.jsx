@@ -4,16 +4,15 @@ import Footer from "../components/Footer"
 import Cards from './Cards';
 
 const GitHubRepositories = () => {
-
   // Storing repositories fetched from Github API
   const [repositories, setRepositories] = useState([]);
   const [filterRepo, setfilterRepo] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
   const allLanguages = useMemo(()=>new Set(), []);
-
-  // const accessToken = ""; // For local Add an .env file. 
   // eslint-disable-next-line no-undef
-  const accessToken = process.env.NEXT_PUBLIC_TOKEN;  
+  const accessToken = process.env.VITE_TOKEN // For local Add an .env file. 
+
+// const accessToken = process.env.NEXT_PUBLIC_TOKEN;  
 
   useEffect(() => {
     fetch('https://api.github.com/repositories', { headers: { Authorization: `Bearer ${accessToken}` } })
