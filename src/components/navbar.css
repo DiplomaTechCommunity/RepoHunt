@@ -1,0 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@300&display=swap');
+
+.navbar {
+    height: 50px;
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+    padding: 0 10px; 
+}
+
+#logo {
+    margin-left: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#logo > img{
+    height: 45px;
+}
+#main-text{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: white;
+}
+
+.navigation{
+    display: flex;
+
+}
